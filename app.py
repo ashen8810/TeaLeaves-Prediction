@@ -16,17 +16,17 @@ def handle_timeseries():
 
 
             date = '2023-06-01'
-            dateEnd = '2023-07-01'
+            
             
             timestamp1 = pd.Timestamp(date)
-            timestamp2 = pd.Timestamp(dateEnd)
+            timestamp2 = pd.Timestamp(time_series_data)
             with open('sarimax_model without exog.pkl', 'rb') as f:
                 loaded_model = pickle.load(f)
             predictions = loaded_model.get_prediction(start=timestamp1, end=timestamp2,dynamic=True,step=30)
 
             # Extract the predicted values
             predicted_values = predictions.predicted_mean
-            pred = predicted_values
+            pred = predicted_values[-1]
             
             # Here you can perform any processing or analysis on the time series data
             # For example, you could pass it to your SARIMAX model for prediction
