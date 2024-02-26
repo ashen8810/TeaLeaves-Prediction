@@ -1,4 +1,6 @@
 from flask import Flask, request, jsonify
+import pickle
+import pandas as pd
 
 app = Flask(__name__)
 
@@ -11,6 +13,20 @@ def handle_timeseries():
             data = request.get_json()  # Get JSON data from the request
             # Assuming the JSON data contains a list of time series data points
             time_series_data = data.get('time_series', [])
+
+
+            date = '2023-06-01'
+            dateEnd = '2023-07-01'
+            
+            timestamp1 = pd.Timestamp(date)
+            timestamp2 = pd.Timestamp(dateEnd)
+            with open('sarimax_model without exog.pkl', 'rb') as f:
+                loaded_model = pickle.load(f)
+            predictions = loaded_model.get_prediction(start=timestamp1, end=timestamp2,dynamic=True,step=30,exog=exog_test)
+
+            # Extract the predicted values
+            predicted_values = predictions.predicted_mean
+            pred = predicted_values
             
             # Here you can perform any processing or analysis on the time series data
             # For example, you could pass it to your SARIMAX model for prediction
@@ -18,7 +34,7 @@ def handle_timeseries():
             # Dummy response indicating successful processing
             response = {
                 'status': 'success',
-                'message': 'Time series data received and processed successfully'
+                'message': str(pred)
             }
             return jsonify(response), 200
         except Exception as e:
