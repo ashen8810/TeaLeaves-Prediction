@@ -22,7 +22,7 @@ def handle_timeseries():
             timestamp2 = pd.Timestamp(dateEnd)
             with open('sarimax_model without exog.pkl', 'rb') as f:
                 loaded_model = pickle.load(f)
-            predictions = loaded_model.get_prediction(start=timestamp1, end=timestamp2,dynamic=True,step=30,exog=exog_test)
+            predictions = loaded_model.get_prediction(start=timestamp1, end=timestamp2,dynamic=True,step=30)
 
             # Extract the predicted values
             predicted_values = predictions.predicted_mean
