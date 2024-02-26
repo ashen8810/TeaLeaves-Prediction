@@ -5,3 +5,5 @@ Jinja2
 markupsafe
 Werkzeug
 gunicorn
+pandas
+statsmodels
