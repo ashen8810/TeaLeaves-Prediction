@@ -65,7 +65,9 @@ def handle_timeseries_with_exog():
             date = '2023-06-01'
 
             dates = pd.date_range(start=date, periods=len(exog_rainfall)) 
-            exog_test = pd.DataFrame([exog_rainfall, exog_holiday],columns=["Rainfall","Holiday"],index=dates)
+            # exog_test = pd.DataFrame([exog_rainfall, exog_holiday],columns=["Rainfall","Holiday"],index=dates)
+            exog_test = pd.DataFrame({"Rainfall": exog_rainfall, "Holiday": exog_holiday}, index=dates)
+
 
 
             with open('./sarimax_model.pkl', 'rb') as f:
