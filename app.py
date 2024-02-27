@@ -15,7 +15,7 @@ def handle_timeseries():
             time_series_data = data.get('time_series', [])
 
             date = '2023-06-01'
-            time_series_data = "2023-06-05"
+            # time_series_data = "2023-06-05"
             
             timestamp1 = pd.Timestamp(date)
             timestamp2 = pd.Timestamp(time_series_data)
@@ -72,6 +72,8 @@ def handle_timeseries_with_exog():
 
             with open('./sarimax_model.pkl', 'rb') as f:
                 loaded_model = pickle.load(f)
+            timestamp1 = pd.Timestamp(date)
+            timestamp2 = pd.Timestamp(time_series_data)
             
             predictions = loaded_model.get_prediction(start=timestamp1, end=timestamp2,dynamic=True,step=30,exog  = exog_test)
 
