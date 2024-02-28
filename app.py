@@ -26,7 +26,9 @@ def handle_timeseries():
 
             # Extract the predicted values
             predicted_values = predictions.predicted_mean
-            pred = predicted_values[-1]
+            pred = predicted_values
+
+
 
             
             # Here you can perform any processing or analysis on the time series data
@@ -35,7 +37,7 @@ def handle_timeseries():
             # Dummy response indicating successful processing
             response = {
                 'status': 'success',
-                'message': str(pred)
+                'message': pred.to_json(orient='records')
             }
             return jsonify(response), 200
         except Exception as e:
@@ -81,6 +83,8 @@ def handle_timeseries_with_exog():
             predicted_values = predictions.predicted_mean
             pred = predicted_values
 
+
+
             
             # Here you can perform any processing or analysis on the time series data
             # For example, you could pass it to your SARIMAX model for prediction
@@ -88,7 +92,7 @@ def handle_timeseries_with_exog():
             # Dummy response indicating successful processing
             response = {
                 'status': 'success',
-                'message': str(pred)
+                'message': pred.to_json(orient='records')
             }
             return jsonify(response), 200
         except Exception as e:
