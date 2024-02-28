@@ -37,7 +37,7 @@ def handle_timeseries():
             # Dummy response indicating successful processing
             response = {
                 'status': 'success',
-                'message': pred.to_json(orient='records')
+                'message': pred.to_json(orient='index')
             }
             return jsonify(response), 200
         except Exception as e:
@@ -78,21 +78,11 @@ def handle_timeseries_with_exog():
             timestamp2 = pd.Timestamp(time_series_data)
             
             predictions = loaded_model.get_prediction(start=timestamp1, end=timestamp2,dynamic=True,step=30,exog  = exog_test)
-
-            # # Extract the predicted values
             predicted_values = predictions.predicted_mean
             pred = predicted_values
-
-
-
-            
-            # Here you can perform any processing or analysis on the time series data
-            # For example, you could pass it to your SARIMAX model for prediction
-            
-            # Dummy response indicating successful processing
             response = {
                 'status': 'success',
-                'message': pred.to_json(orient='records')
+                'message': pred.to_json(orient='index')
             }
             return jsonify(response), 200
         except Exception as e:
