@@ -64,6 +64,7 @@ def handle_timeseries_with_exog():
             predictions = loaded_model.get_prediction(start=timestamp1, end=timestamp2,dynamic=True,step=30,exog  = exog_test)
             predicted_values = predictions.predicted_mean
             pred = predicted_values
+            print(pred)
             response = {
                 'status': 'success',
                 'message': pred.to_json(orient='records')
