@@ -47,7 +47,7 @@ def handle_timeseries_with_exog():
             exog_rainfall = data.get('rainfall')
             exog_holiday = data.get('holiday')
             print(time_series_data)
-            print(exog_rainfall)
+            print(type(exog_rainfall))
             print(exog_holiday)
             date = '2023-06-01'
 
