@@ -51,7 +51,9 @@ def handle_timeseries_with_exog():
             print(exog_holiday)
             date = '2023-06-01'
 
-            dates = pd.date_range(start=date, periods=len(exog_rainfall)) 
+            dates = pd.date_range(start=date, end = time_series_data) 
+            if len(dates) != len(exog_rainfall) or len(dates) != len(exog_holiday):
+                return jsonify({'error': 'Mismatch Lengths'})
             exog_test = pd.DataFrame({"Rainfall": exog_rainfall, "Holiday": exog_holiday}, index=dates)
 
 
