@@ -22,6 +22,10 @@ The RMSE for each model is as follows:
 
 The CatBoost Regressor provides the best performance with the lowest RMSE.
 
+## Flask API Application
+
+This repository also includes a Flask application that serves as an API for predicting tea leaves quantities based on input data. You can use the API to make predictions using trained models.
+
 ## Conclusion
 This project demonstrates the use of different regression models to predict the quantity of tea leaves. The CatBoost Regressor was found to be the most effective model in this case.
 
